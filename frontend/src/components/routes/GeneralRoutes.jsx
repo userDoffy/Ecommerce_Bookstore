@@ -9,6 +9,7 @@ import Terms from '../pages/Extras/Terms.jsx';
 import Login from '../pages/Auth/Login.jsx';
 import Signup from '../pages/Auth/Signup.jsx';
 import Verification from '../pages/Auth/Verification.jsx';
+import AccountCreated from '../pages/Auth/AccountCreated.jsx';
 
 const GeneralRoutes = [
     <Route path="/" element={<Popular />} />,
@@ -20,7 +21,8 @@ const GeneralRoutes = [
     <Route path="/terms" element={<Terms />} />,
     <Route path="/login" element={<Login />} />,
     <Route path="/signup" element={<Signup />} />,
-    <Route path="/verification" element={<Verification />} />
+    <Route path="/verification" element={<Verification />} />,
+    <Route path='/accountcreated' element={<AccountCreated />} />,
 ]
 
 export default GeneralRoutes

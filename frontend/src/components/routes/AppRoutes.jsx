@@ -9,7 +9,7 @@ const AppRoutes = () => {
     <>
     <Routes>
     {GeneralRoutes}
-    {/* {UserRoutes} */}
+    {UserRoutes}
     <Route path="/error" element={<Error />} />
     <Route path="*" element={<NotFound />} />
     </Routes>

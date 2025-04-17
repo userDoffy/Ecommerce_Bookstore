@@ -1,8 +1,11 @@
 import React from 'react'
 import useForm from "../../../customhooks/useForm.jsx"
-import { Navigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import useRedirectIfAuthenticated from "../../../customhooks/useRedirectIfAuthenticated.jsx";
 
 const Signup = () => {
+  useRedirectIfAuthenticated('/popular');
   const navigate = useNavigate();
   const { formData, handleChange } = useForm({
     name: "",
@@ -14,14 +17,14 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/auth/signup', formData, { headers: { "Content-Type": "application/json" } });
-      if (response.status === 200) {
+      if (response.status === 201) {
         navigate("/verification", { state: { email: formData.email } });
       } else {
         navigate("/error", { state: { message: "Signup failed!" } });
       }
 
     } catch (error) {
-      next(error);
+      navigate("/error", { state: { message: "Signup failed!" } });
     }
   }
 
@@ -65,19 +68,6 @@ const Signup = () => {
               onChange={handleChange}
               required
             />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="role" className="form-label">Role</label>
-            <select
-              className="form-select"
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-            >
-              <option value="User">User</option>
-              <option value="Admin">Admin</option>
-            </select>
           </div>
           <button type="submit" className="btn btn-primary w-100">Signup</button>
         </form>
